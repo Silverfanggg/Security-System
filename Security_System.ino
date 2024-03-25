@@ -2,8 +2,8 @@
 #include <HTTPClient.h>
 #include <UrlEncode.h>
 
-int Buzzer 2
-int Sensor 4
+int Buzzer = 2;
+int Sensor = 4;
 
 const char* ssid = "Wifi ID";
 const char* password = "Wifi Password";
