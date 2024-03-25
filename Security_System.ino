@@ -11,14 +11,16 @@ const char* password = "Wifi Password";
 String phoneNumber = "Phone Number"; 
 String apiKey = "API KEY";
 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);
   pinMode(Buzzer, OUTPUT);
   pinMode(Sensor, INPUT);
 
   WiFi.begin(ssid, password);
   Serial.println("Connecting");
-  while (WiFi.status() != WL_CONNECTED) {
+  while (WiFi.status() != WL_CONNECTED) 
+  {
     delay(500);
     Serial.print(".");
   }
@@ -30,18 +32,23 @@ void setup() {
   sendAlert("Your system is ready!");
 }
 
-void loop() {
+void loop() 
+{
   bool sensorValue = digitalRead(Sensor);
-  if (sensorValue == 1) {
+  if (sensorValue == 1) 
+  {
     digitalWrite(Buzzer, HIGH);
     sendAlert("Warning!");
-  } else {
+  } 
+  else 
+  {
     digitalWrite(Buzzer, LOW);
   }
 }
 
 
-void sendAlert(String message) {
+void sendAlert(String message) 
+{
 
   
   String url = "https://api.callmebot.com/whatsapp.php?phone=" + phoneNumber + "&apikey=" + apiKey + "&text=" + urlEncode(message);
@@ -53,10 +60,12 @@ void sendAlert(String message) {
 
   
   int httpResponseCode = http.POST(url);
-  if (httpResponseCode == 200) {
+  if (httpResponseCode == 200) 
+  {
     Serial.print("Message sent successfully");
   }
-  else {
+  else 
+  {
     Serial.println("Error sending the message");
     Serial.print("HTTP response code: ");
     Serial.println(httpResponseCode);
